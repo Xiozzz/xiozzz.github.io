@@ -1,10 +1,53 @@
-<h4>pierre - feuille - ciseaux</h4>
-  <button type="button" class="btn" onclick="PFC(this.value);" value="0" />
-    <img src="http://www.groupepromix.com/userfiles/images/granite.png" alt="pierre" /></button>
-  <button type="button" class="btn" onclick="PFC(this.value);" value="1" />
-    <img src="https://thumbs.dreamstime.com/b/feuille-de-papier-chiffonn%C3%A9e-6457832.jpg" alt="feuille" /></button>
-  </button>
-  <button type="button" class="btn" onclick="PFC(this.value);" value="2" />
-    <img src="https://www.humanosphere.info/wp-content/uploads/2015/04/120522_5w6rb_objet_ciseaux_sn635.jpg" alt="ciseaux" /></button>
-  </button>
-<div id="result"></div>
+var equal = "égalité";
+var win = "gagné";
+var lose = "perdu";
+var txt_equal = "égalité";
+var txt_win = "Vous gagnez !";
+var txt_lose = "Vous avez perdu.";
+var user_point = 0;
+var ia_point = 0;
+var bet = ["pierre", "feuille", "ciseaux"];
+var result = document.getElementById("result");
+result.innerHTML = '';
+var txt_result = '';
+ 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+function PFC(player_bet) {
+  var i = Number(player_bet);
+  var j = getRandomInt(3); // 0, 1 or 2
+ 
+  if (user_point < 3 && ia_point < 3) { // il faut 3 victoires
+    result.innerHTML += "(vous) <b>" + bet[i] + "</b> - (IA) <b>" + bet[j] + "</b> : ";
+ 
+    if (i === j) {
+      result.innerHTML += equal + "<br />";
+    } else if ((i == 0 && j == 2) || (i == 1 && j == 0) || (i == 2 && j == 1)) {
+      result.innerHTML += win + "<br />";
+      user_point++;
+    } else {
+      result.innerHTML += lose + "<br />";
+      ia_point++;
+    }
+    result.innerHTML += "Score : " + user_point + " - " + ia_point + "<br />";
+  }
+ 
+  if ( (user_point >= 3 || ia_point >= 3) && txt_result == '' ) { // on a 3 victoires
+    if( user_point==ia_point ){
+      txt_result = txt_equal;
+    } else if( user_point>ia_point ){
+      txt_result = txt_win;
+    } else {
+      txt_result = txt_lose;
+    }
+    result.innerHTML += "<h4>Résultat final : <b>"+txt_result+"</b></h4>";
+    result.innerHTML += "<button type=\"button\" onclick=\"PFC_reset();\">Rejouer ?</button><br />";
+  }
+}
+function PFC_reset(){
+  txt_result = '';
+  result.innerHTML = '';
+  user_point = 0;
+  ia_point = 0;
+}
