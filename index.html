@@ -1,50 +1,48 @@
-CHOIX = ["Pierre", "Feuille", "Ciseaux"]
-def choix_joueur():
-	choix = input("Choisissez Pierre, Feuille, Ciseaux !\n>>>")
-	while choix != CHOIX[0] and choix != CHOIX[1] and choix != CHOIX[2]:	
-		choix = input("Pierre, Feuille ou Ciseaux ?\n>>>")
-	print("Vous choisissez", choix)
-	return choix
+<html>
 
-def choix_ordinateur():
-	choix = randint(0, 2)
-	print("L'ordinateur a choisi", CHOIX[choix])
-	return CHOIX[choix]
 
-def verification_jeu(choixJoueur, choixOrdinateur):
+<head>
 
-	if choixJoueur == choixOrdinateur:
-		print("Vous avez tout les deux choisi", choixJoueur, "et vous faites égalité. :)")
-	elif choixJoueur == "Pierre":
-		if choixOrdinateur == "Feuille":
-			print("La feuille recouvre la pierre, vous avez perdu. :(")
-		elif choixOrdinateur == "Ciseaux":
-			print("Les Ciseaux sont cassé par la pierre, vous avez gagné. :D")
-	elif choixJoueur == "Feuille":
-		if choixOrdinateur == "Pierre":
-			print("La feuille recouvre la pierre, vous avez gagné. :D")
-		elif choixOrdinateur == "Ciseaux":
-			print("Les ciseaux coupe la feuille, vous avez perdu. :(")
-	elif choixJoueur == "Ciseaux":
-		if choixOrdinateur == "Pierre":
-			print("Les Ciseaux sont cassé par la pierre, vous avez perdu. :(")
-		if choixOrdinateur == "Feuille":
-			print("Les ciseaux coupe la feuille, vous avez gagné. :D")
+<link rel="preconnect" href="https://fonts.gstatic.com">
 
-def jeu():
-	print("************************\nPierre, Feuille, Ciseaux\n************************")
-	
-	joueur = choix_joueur()
-	ordinateur = choix_ordinateur()
-	verification_jeu(joueur, ordinateur)
+<link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
 
-def menu():
+<style>
 
-	while True:
-		answer = input("-----------------------------\nNouvelle partie ou Quitter ?\n\
------------------------------\n>>>").lower()
-		if answer == "q" or answer == "quitter":
-			break
-		elif answer == "n" or answer == "nouvelle" or answer == "nouvelle partie":
-			jeu()
-menu()
+body {
+
+font-size: 950%;
+
+text-align: center;
+
+margin-top: 7%;
+
+padding: 0px;
+
+line-height: 26pt;
+
+background-color: #293133;
+
+color: white;
+
+font-family: 'Goldman', cursive;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<p>
+
+Mini Jeux
+
+<p>
+
+<img src="images/SPOILER_Miniature_34.png" width="70%">
+
+</body>
+
+</html>
