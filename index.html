@@ -1,15 +1,4 @@
-# -*- coding:Utf-8 -*-
-
-# bibliothèques
-
-from random import randint
-
-# données
-
 CHOIX = ["Pierre", "Feuille", "Ciseaux"]
-
-# fonctions
-
 def choix_joueur():
 	choix = input("Choisissez Pierre, Feuille, Ciseaux !\n>>>")
 	while choix != CHOIX[0] and choix != CHOIX[1] and choix != CHOIX[2]:	
@@ -58,7 +47,4 @@ def menu():
 			break
 		elif answer == "n" or answer == "nouvelle" or answer == "nouvelle partie":
 			jeu()
-
-# programme
-
 menu()
