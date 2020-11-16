@@ -1,96 +1,28 @@
-// -----------------
-// JEU : pierre, feuille, ciseaux
-// -----------------
-// Définition de l objet PFC
-var PFC = {
-	init:function(){
-		this.equal = "égalité";
-		this.win = "gagné";
-		this.lose = "perdu";
-		this.txt_equal = "égalité";
-		this.txt_win = "Vous gagnez !";
-		this.txt_lose = "Vous avez perdu.";
- 
-		this.my_point = 0;
-		this.ia_point = 0;
-		this.count = 0;
-		this.bet = ['pierre', 'feuille', 'ciseaux'];
- 
-		this.show_result = document.getElementById('PFC_show_result');
-		this.show_result.innerHTML = '';
-		this.txt_result = '';
-	},
-	play:function( player_bet ){
-		var i = Number(player_bet);
-		var j = Math.floor(Math.random() * 3); // 0, 1 or 2
- 
-		if (this.my_point < 3 && this.ia_point < 3)  // il faut 3 victoires
-		{
-			this.show_result.innerHTML += this.score(i,j);
-      this.count++;
-		}
- 
-		if ( (this.my_point >= 3 || this.ia_point >= 3) && this.txt_result == '' )  // on a 3 victoires
-		{
-			this.show_result.innerHTML += this.result(this.my_point,this.ia_point);
-		}
-	},
-	score:function(i,j) {
-		var txtHTML = '';
-		txtHTML += "(vous) <b>" + this.bet[i] + "</b> - (IA) <b>" + this.bet[j] + "</b> : ";
- 
-		if (i === j) {
-			txtHTML += this.equal + "<br />";
-		} else if ((i == 0 && j == 2) || (i == 1 && j == 0) || (i == 2 && j == 1)) {
-			txtHTML += "<b>" + this.win + "</b><br />";
-			this.my_point++;
-		} else {
-			txtHTML += this.lose + "<br />";
-			this.ia_point++;
-		}
-		txtHTML += "Score : " + this.my_point + " - " + this.ia_point + "<br />";
-		return txtHTML;
-	},
-	result:function(my_point,ia_point) {
-		var txtHTML = '';
-		if( this.my_point==this.ia_point ){
-			this.txt_result = this.txt_equal;
-		} else if( this.my_point>this.ia_point ){
-			this.txt_result = this.txt_win;
-		} else {
-			this.txt_result = this.txt_lose;
-		}
-		txtHTML += "<h4>Résultat final (en "+this.count+" coups) : <b>"+this.txt_result+"</b></h4>";
-		txtHTML += "<button type=\"button\" class=\"PFC_btn_replay\">Rejouer ?</button><br />";
-		return txtHTML;
-	},
-	reset:function() {
-		this.txt_result = '';
-		this.show_result.innerHTML = '';
-		this.my_point = 0;
-		this.ia_point = 0;
-		this.count = 0;
-	}
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
+<style>
+body {
+font-size: 950%;
+text-align: center;
+padding: 0px;
+line-height: 26pt;
+background-color: #293133;
+color: white;
+font-family: 'Goldman', cursive;
 }
-// -----------------
-// lancement du jeu : on crée et initialise un objet PFC
-var PFC1 = Object.create(PFC);
-document.body.onload = function(){
-	PFC1.init();
-	// au clic sur un des 3 boutons : on joue 
-	var PFC_btns = document.querySelectorAll('.PFC_btn');
-	PFC_btns.forEach(function(PFC_btn) {
-		PFC_btn.addEventListener('click', function() {
-			PFC1.play(PFC_btn.value);
-		}, false);
-	});
-};
-// -----------------
-// bouton "rejouer" : le bouton n'existe pas dans le DOM au départ.
-// on doit le relier à un élément existant
-document.body.addEventListener( 'click', function ( event ) {
-	if( event.target.className == 'PFC_btn_replay' ) {
-		PFC1.reset();
-	};
-});
-// -----------------
+img {
+margin-bottom:10%;
+  }
+</style>
+</head>
+<body>
+<p style="margin-top:7%">
+Pierre, Feuille, Ciseaux
+<p>
+<img src="images/mini jeux.jpg" width="70%" style="margin-bottom: 5px">
+  <p style="font-size: 20% margin: -20px">PFC</p>
+<a href="pfc.html"><img src="images/pfc.jpg" width="30%" style="margin-top:0px"></a>
+</body>
+</html>
